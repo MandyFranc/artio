@@ -29,7 +29,7 @@ const HowItWorks = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
           <p className="text-lg text-artGray-600 dark:text-artGray-300">
-            Get started in three simple steps and enhance your art viewing experience
+            Get started with Artio in three simple steps and enhance your art viewing experience
           </p>
         </div>
         

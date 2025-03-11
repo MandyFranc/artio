@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, Pause, RotateCcw } from 'lucide-react';
@@ -36,7 +35,7 @@ const Demo = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">See It In Action</h2>
           <p className="text-lg text-artGray-600 dark:text-artGray-300">
-            Experience how the app scans artwork and delivers informative audio guides
+            Experience how Artio scans artwork and delivers informative audio guides
           </p>
         </div>
         
@@ -92,7 +91,7 @@ const Demo = () => {
           <div className="space-y-6 order-1 lg:order-2">
             <h3 className="text-2xl md:text-3xl font-bold">Unlock the Stories Behind Great Art</h3>
             <p className="text-lg text-artGray-600 dark:text-artGray-300">
-              Our app uses advanced image recognition to identify artwork and provide detailed audio explanations tailored to each piece you encounter.
+              Artio uses advanced image recognition to identify artwork and provide detailed audio explanations tailored to each piece you encounter.
             </p>
             <ul className="space-y-3">
               <li className="flex">
@@ -113,7 +112,7 @@ const Demo = () => {
               </li>
             </ul>
             <Button className="art-button">
-              Try For Free
+              Join Beta Now
             </Button>
           </div>
         </div>

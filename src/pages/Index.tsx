@@ -31,12 +31,12 @@ const Index = () => {
                 Ready to Transform Your Art Experience?
               </h2>
               <p className="text-xl mb-8 text-white/90">
-                Download ArtScan now and start exploring the hidden stories behind every artwork.
+                Be among the first to try Artio and start exploring the hidden stories behind every artwork.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button className="bg-white text-artPurple-600 hover:bg-white/90 rounded-full px-6 py-6 font-medium text-lg">
                   <DownloadIcon className="mr-2 h-5 w-5" />
-                  Get the App
+                  Sign Up for Beta
                 </Button>
                 <Button variant="outline" className="border-white text-white hover:bg-white/10 rounded-full px-6 py-6 font-medium text-lg">
                   Learn More

@@ -1,4 +1,3 @@
-
 import { FacebookIcon, TwitterIcon, InstagramIcon, YoutubeIcon } from 'lucide-react';
 
 const Footer = () => {
@@ -10,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <span className="text-xl font-display font-bold bg-clip-text text-transparent art-gradient">ArtScan</span>
+              <span className="text-xl font-display font-bold bg-clip-text text-transparent art-gradient">Artio</span>
             </div>
             <p className="text-artGray-600 dark:text-artGray-300 mb-4">
               Enhancing art experiences through technology that connects visitors with the stories behind great artwork.
@@ -112,7 +111,7 @@ const Footer = () => {
         
         <div className="border-t border-artGray-200 dark:border-artGray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-artGray-600 dark:text-artGray-300 text-sm">
-            © {currentYear} ArtScan. All rights reserved.
+            © {currentYear} Artio. All rights reserved.
           </p>
           <div className="mt-4 md:mt-0 flex space-x-6">
             <a href="#" className="text-sm text-artGray-600 dark:text-artGray-300 hover:text-artPurple-500 dark:hover:text-artPurple-400 transition-colors">

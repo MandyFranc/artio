@@ -1,4 +1,3 @@
-
 import { Scan, Play, Headphones } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -17,11 +16,11 @@ const Hero = () => {
               <span className="bg-clip-text text-transparent art-gradient"> in audio</span>
             </h1>
             <p className="text-xl text-artGray-600 dark:text-artGray-300 max-w-[600px]">
-              Simply scan any artwork with your phone and get an instant audio guide explaining its context, meaning, and history.
+              Simply scan any painting, sculpture, or installation to instantly hear its context, meaning, and history from Artio.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button className="art-button">
-                Start Exploring
+                Sign Up for Beta
               </Button>
               <Button variant="outline" className="art-button-outline">
                 Learn More

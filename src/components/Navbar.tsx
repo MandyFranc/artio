@@ -31,7 +31,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           <a href="/" className="flex items-center space-x-2">
-            <span className="text-xl font-display font-bold bg-clip-text text-transparent art-gradient">ArtScan</span>
+            <span className="text-xl font-display font-bold bg-clip-text text-transparent art-gradient">Artio</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -46,7 +46,7 @@ const Navbar = () => {
               Demo
             </a>
             <Button className="art-button">
-              Get Started
+              Join Beta
             </Button>
           </nav>
 
@@ -84,7 +84,7 @@ const Navbar = () => {
               Demo
             </a>
             <Button className="art-button w-full">
-              Get Started
+              Join Beta
             </Button>
           </nav>
         )}
