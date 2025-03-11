@@ -31,9 +31,12 @@ export const BetaSignupForm = () => {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase
+      console.log("Submitting to Supabase:", { name, email });
+      const { error, data } = await supabase
         .from('Beta sign up')
         .insert([{ name, email }]);
+        
+      console.log("Supabase response:", { error, data });
         
       if (error) throw error;
       
