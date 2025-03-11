@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, Pause, RotateCcw } from 'lucide-react';
+import BetaSignupForm from '@/components/BetaSignupForm';
 
 const Demo = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -114,9 +115,7 @@ const Demo = () => {
                 <span>Save favorites for later reference and exploration</span>
               </li>
             </ul>
-            <Button className="art-button" aria-label="Join Artio beta program">
-              Join Beta Now
-            </Button>
+            <BetaSignupForm />
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 
 import { Scan, Play, Headphones } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import BetaSignupForm from '@/components/BetaSignupForm';
 
 const Hero = () => {
   return (
@@ -20,12 +20,7 @@ const Hero = () => {
               Simply scan any painting, sculpture, or installation to instantly hear its context, meaning, and history from Artio.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="art-button" aria-label="Sign up for beta access">
-                Sign Up for Beta
-              </Button>
-              <Button variant="outline" className="art-button-outline" aria-label="Learn more about Artio">
-                Learn More
-              </Button>
+              <BetaSignupForm />
             </div>
             <div className="flex items-center space-x-4 text-sm text-artGray-500">
               <div className="flex items-center">

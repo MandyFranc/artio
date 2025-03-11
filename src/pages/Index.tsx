@@ -5,8 +5,7 @@ import HowItWorks from '@/components/HowItWorks';
 import Features from '@/components/Features';
 import Demo from '@/components/Demo';
 import Footer from '@/components/Footer';
-import { Button } from '@/components/ui/button';
-import { DownloadIcon } from 'lucide-react';
+import BetaSignupForm from '@/components/BetaSignupForm';
 
 const Index = () => {
   return (
@@ -33,14 +32,8 @@ const Index = () => {
               <p className="text-xl mb-8 text-white/90">
                 Be among the first to try Artio and start exploring the hidden stories behind every artwork.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-white text-artPurple-600 hover:bg-white/90 rounded-full px-6 py-6 font-medium text-lg" aria-label="Sign up for Artio beta access">
-                  <DownloadIcon className="mr-2 h-5 w-5" aria-hidden="true" />
-                  Sign Up for Beta
-                </Button>
-                <Button variant="outline" className="border-white text-white hover:bg-white/10 rounded-full px-6 py-6 font-medium text-lg" aria-label="Learn more about Artio">
-                  Learn More
-                </Button>
+              <div className="flex justify-center">
+                <BetaSignupForm />
               </div>
             </div>
           </div>
