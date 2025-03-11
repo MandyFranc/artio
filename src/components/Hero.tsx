@@ -15,7 +15,7 @@ const Hero = () => {
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tighter">
               Discover the story behind every artwork
-              <span className="bg-clip-text text-transparent art-gradient"> in audio</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-artPurple-400 to-artPurple-600"> in audio</span>
             </h1>
             <p className="text-xl text-artGray-600 dark:text-artGray-300 max-w-[600px]">
               Simply scan any painting, sculpture, or installation to instantly hear its context, meaning, and history from Artio.
@@ -23,7 +23,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <BetaSignupForm />
             </div>
-            <div className="flex items-center space-x-4 text-sm text-artGray-500">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-artGray-500">
               <div className="flex items-center">
                 <Scan className="mr-1 h-4 w-4 text-artPurple-500" aria-hidden="true" />
                 <span>Instant Scanning</span>
@@ -41,23 +41,23 @@ const Hero = () => {
           <div className="relative">
             <div className="absolute -left-10 -top-10 h-72 w-72 rounded-full bg-artPurple-400 opacity-20 filter blur-3xl" aria-hidden="true"></div>
             <div className="absolute -right-10 -bottom-10 h-72 w-72 rounded-full bg-artPurple-600 opacity-20 filter blur-3xl" aria-hidden="true"></div>
-            <div className="relative w-full max-w-md mx-auto animate-float z-10">
+            <div className="relative w-full max-w-md mx-auto z-10">
               <div className="relative">
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-artPurple-400 to-artPurple-600 opacity-20 blur-xl" aria-hidden="true"></div>
                 <div className="glass-card p-5 overflow-hidden">
                   {/* Artwork Image */}
                   <div className="rounded-lg overflow-hidden mb-4">
                     <img 
-                      src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81" 
-                      alt="Person enjoying artwork in a modern art gallery with headphones" 
+                      src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?q=80&w=2070&auto=format&fit=crop"
+                      alt="Visitors observing artwork in modern gallery" 
                       className="w-full h-auto object-cover rounded-lg"
                     />
                   </div>
                   
                   {/* Artwork Details */}
                   <div className="mb-4">
-                    <h3 className="text-xl font-display font-medium">Modern Expressions</h3>
-                    <p className="text-sm text-artGray-500">Contemporary Gallery, New York</p>
+                    <h3 className="text-xl font-display font-medium">Contemporary Impressions</h3>
+                    <p className="text-sm text-artGray-500">The Modern Gallery, New York</p>
                     <div className="mt-2 flex items-center text-sm text-artGray-500">
                       <Info className="h-4 w-4 text-artPurple-500 mr-1" aria-hidden="true" />
                       <span>Abstract, 2023</span>
