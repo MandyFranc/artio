@@ -85,7 +85,7 @@ export const BetaSignupForm = () => {
   return (
     <>
       <Button 
-        className="bg-white text-artPurple-600 hover:bg-white/90 rounded-full px-6 py-6 font-medium text-lg" 
+        className="relative bg-artPurple-500 hover:bg-artPurple-600 text-white font-semibold px-6 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]" 
         onClick={() => setIsOpen(true)}
         aria-label="Sign up for Artio beta access"
       >
