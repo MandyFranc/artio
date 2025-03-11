@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, Pause, RotateCcw } from 'lucide-react';
@@ -41,12 +42,12 @@ const Demo = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="relative order-2 lg:order-1">
-            <div className="absolute -left-10 -bottom-10 h-72 w-72 rounded-full bg-artPurple-400 opacity-10 filter blur-3xl"></div>
+            <div className="absolute -left-10 -bottom-10 h-72 w-72 rounded-full bg-artPurple-400 opacity-10 filter blur-3xl" aria-hidden="true"></div>
             <div className="glass-card overflow-hidden p-4 relative z-10">
               <div className="aspect-video rounded-lg overflow-hidden bg-artGray-200 dark:bg-artGray-800 relative">
                 <img 
                   src="https://images.unsplash.com/photo-1544967082-d9d25d867d66" 
-                  alt="Art Gallery Exhibition" 
+                  alt="Interior of an art gallery with paintings on white walls and visitors viewing artwork" 
                   className="w-full h-full object-cover"
                 />
                 
@@ -59,8 +60,9 @@ const Demo = () => {
                           size="icon" 
                           variant="ghost" 
                           className="bg-white text-artGray-900 hover:bg-white/90 rounded-full h-10 w-10"
+                          aria-label={isPlaying ? "Pause audio guide" : "Play audio guide"}
                         >
-                          {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+                          {isPlaying ? <Pause size={20} aria-hidden="true" /> : <Play size={20} aria-hidden="true" />}
                         </Button>
                         <span className="ml-3 text-white font-medium">
                           {isPlaying ? "Listening to audio guide..." : "Start audio guide"}
@@ -71,12 +73,13 @@ const Demo = () => {
                         size="icon" 
                         variant="ghost" 
                         className="text-white/80 hover:text-white hover:bg-white/10 rounded-full h-10 w-10"
+                        aria-label="Reset audio guide demo"
                       >
-                        <RotateCcw size={16} />
+                        <RotateCcw size={16} aria-hidden="true" />
                       </Button>
                     </div>
                     
-                    <div className="h-1 bg-white/30 rounded-full overflow-hidden">
+                    <div className="h-1 bg-white/30 rounded-full overflow-hidden" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100} aria-label="Audio playback progress">
                       <div 
                         className="h-full bg-artPurple-500 transition-all duration-300"
                         style={{ width: `${progress}%` }}
@@ -95,23 +98,23 @@ const Demo = () => {
             </p>
             <ul className="space-y-3">
               <li className="flex">
-                <div className="mr-3 text-artPurple-500">✓</div>
+                <div className="mr-3 text-artPurple-500" aria-hidden="true">✓</div>
                 <span>Instant artwork recognition in any lighting condition</span>
               </li>
               <li className="flex">
-                <div className="mr-3 text-artPurple-500">✓</div>
+                <div className="mr-3 text-artPurple-500" aria-hidden="true">✓</div>
                 <span>Expert-curated audio guides for thousands of artworks</span>
               </li>
               <li className="flex">
-                <div className="mr-3 text-artPurple-500">✓</div>
+                <div className="mr-3 text-artPurple-500" aria-hidden="true">✓</div>
                 <span>Adjustable playback speed and volume controls</span>
               </li>
               <li className="flex">
-                <div className="mr-3 text-artPurple-500">✓</div>
+                <div className="mr-3 text-artPurple-500" aria-hidden="true">✓</div>
                 <span>Save favorites for later reference and exploration</span>
               </li>
             </ul>
-            <Button className="art-button">
+            <Button className="art-button" aria-label="Join Artio beta program">
               Join Beta Now
             </Button>
           </div>

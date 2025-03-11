@@ -37,7 +37,7 @@ const HowItWorks = () => {
           {steps.map((step, index) => (
             <div key={index} className="relative">
               <div className="glass-card p-6 h-full flex flex-col items-center text-center">
-                <div className={`${step.color} rounded-full p-4 mb-6`}>
+                <div className={`${step.color} rounded-full p-4 mb-6`} aria-hidden="true">
                   <step.icon className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{step.title}</h3>
@@ -45,7 +45,7 @@ const HowItWorks = () => {
               </div>
               
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 z-10">
+                <div className="hidden md:block absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 z-10" aria-hidden="true">
                   <svg width="40" height="12" viewBox="0 0 40 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 6H38M38 6L33 1M38 6L33 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-artGray-300 dark:text-artGray-600" />
                   </svg>

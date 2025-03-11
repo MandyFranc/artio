@@ -30,12 +30,12 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
-          <a href="/" className="flex items-center space-x-2">
+          <a href="/" className="flex items-center space-x-2" aria-label="Artio home">
             <span className="text-xl font-display font-bold bg-clip-text text-transparent art-gradient">Artio</span>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8" aria-label="Main navigation">
             <a href="#how-it-works" className="text-artGray-700 dark:text-artGray-300 hover:text-artPurple-500 dark:hover:text-artPurple-400 transition-colors">
               How It Works
             </a>
@@ -45,7 +45,7 @@ const Navbar = () => {
             <a href="#demo" className="text-artGray-700 dark:text-artGray-300 hover:text-artPurple-500 dark:hover:text-artPurple-400 transition-colors">
               Demo
             </a>
-            <Button className="art-button">
+            <Button className="art-button" aria-label="Join Artio beta program">
               Join Beta
             </Button>
           </nav>
@@ -54,14 +54,16 @@ const Navbar = () => {
           <button 
             className="md:hidden text-artGray-800 dark:text-artGray-200"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-expanded={isMobileMenuOpen}
+            aria-label="Toggle navigation menu"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 flex flex-col space-y-4 mt-2">
+          <nav className="md:hidden py-4 flex flex-col space-y-4 mt-2" aria-label="Mobile navigation">
             <a 
               href="#how-it-works" 
               className="text-artGray-700 dark:text-artGray-300 hover:text-artPurple-500 dark:hover:text-artPurple-400 transition-colors"
@@ -83,7 +85,7 @@ const Navbar = () => {
             >
               Demo
             </a>
-            <Button className="art-button w-full">
+            <Button className="art-button w-full" aria-label="Join Artio beta program">
               Join Beta
             </Button>
           </nav>
