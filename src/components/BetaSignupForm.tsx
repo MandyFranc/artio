@@ -4,12 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Checkbox } from '@/components/ui/checkbox';
 import { DownloadIcon, CheckCircle, XCircle } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import PolicyModal from './PolicyModal';
-import { TermsOfServiceContent } from './PolicyContents';
 
 export const BetaSignupForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,8 +14,6 @@ export const BetaSignupForm = () => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formState, setFormState] = useState<'idle' | 'success' | 'error'>('idle');
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [isTermsOpen, setIsTermsOpen] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,22 +28,13 @@ export const BetaSignupForm = () => {
       return;
     }
     
-    if (!acceptedTerms) {
-      toast({
-        title: "Terms agreement required",
-        description: "Please agree to the Terms of Service to continue.",
-        variant: "destructive"
-      });
-      return;
-    }
-    
     setIsSubmitting(true);
     
     try {
-      console.log("Submitting to Supabase:", { name, email, acceptedTerms });
+      console.log("Submitting to Supabase:", { name, email });
       const { error, data } = await supabase
         .from('Beta sign up')
-        .insert([{ name, email, accepted_terms: acceptedTerms }]);
+        .insert([{ name, email }]);
         
       console.log("Supabase response:", { error, data });
         
@@ -64,7 +50,6 @@ export const BetaSignupForm = () => {
       setTimeout(() => {
         setName('');
         setEmail('');
-        setAcceptedTerms(false);
         setFormState('idle');
         setIsOpen(false);
       }, 3000);
@@ -151,32 +136,11 @@ export const BetaSignupForm = () => {
                   required
                 />
               </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="terms" 
-                  checked={acceptedTerms}
-                  onCheckedChange={(checked) => setAcceptedTerms(checked === true)}
-                />
-                <Label htmlFor="terms" className="text-sm font-normal">
-                  I agree to the{' '}
-                  <button
-                    type="button"
-                    className="text-artPurple-500 hover:underline font-medium"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsTermsOpen(true);
-                    }}
-                  >
-                    Terms of Service
-                  </button>
-                  <span className="text-red-500">*</span>
-                </Label>
-              </div>
               <div className="pt-4">
                 <Button 
                   type="submit" 
                   className="w-full bg-artPurple-500 hover:bg-artPurple-600 rounded-md"
-                  disabled={isSubmitting || !acceptedTerms}
+                  disabled={isSubmitting}
                 >
                   {isSubmitting ? "Signing Up..." : "Sign Up for Beta Access"}
                 </Button>
@@ -185,13 +149,6 @@ export const BetaSignupForm = () => {
           )}
         </DialogContent>
       </Dialog>
-      
-      <PolicyModal 
-        isOpen={isTermsOpen} 
-        setIsOpen={setIsTermsOpen} 
-        title="Terms of Service" 
-        content={<TermsOfServiceContent />} 
-      />
     </>
   );
 };
