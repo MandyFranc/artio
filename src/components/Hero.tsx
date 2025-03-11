@@ -46,8 +46,8 @@ const Hero = () => {
                 <div className="glass-card p-4 overflow-hidden">
                   <div className="rounded-lg overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3" 
-                      alt="Person in art gallery scanning artwork with a mobile phone" 
+                      src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81" 
+                      alt="Person enjoying artwork in a modern art gallery with headphones" 
                       className="w-full h-auto object-cover rounded-lg"
                     />
                   </div>
@@ -56,11 +56,11 @@ const Hero = () => {
                       <Headphones className="h-6 w-6 text-artPurple-500" aria-hidden="true" />
                     </div>
                     <div>
-                      <h3 className="font-medium">The Starry Night</h3>
-                      <p className="text-sm text-artGray-500">Vincent van Gogh, 1889</p>
+                      <h3 className="font-medium">Modern Expressions</h3>
+                      <p className="text-sm text-artGray-500">Contemporary Gallery, 2023</p>
                     </div>
                     <div className="ml-auto">
-                      <div className="bg-artPurple-500 rounded-full p-2" role="button" aria-label="Play audio guide for The Starry Night">
+                      <div className="bg-artPurple-500 rounded-full p-2" role="button" aria-label="Play audio guide for Modern Expressions">
                         <Play className="h-4 w-4 text-white" fill="white" aria-hidden="true" />
                       </div>
                     </div>
