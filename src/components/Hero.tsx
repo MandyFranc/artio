@@ -1,3 +1,4 @@
+
 import { Scan, Play, Headphones } from 'lucide-react';
 import BetaSignupForm from '@/components/BetaSignupForm';
 
@@ -42,42 +43,27 @@ const Hero = () => {
             <div className="relative w-full max-w-md mx-auto animate-float z-10">
               <div className="relative">
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-artPurple-400 to-artPurple-600 opacity-20 blur-xl" aria-hidden="true"></div>
-                <div className="glass-card p-4 space-y-4">
-                  <div className="flex items-center gap-4">
-                    <img 
-                      src="/lovable-uploads/148b217b-9aa4-4ca9-b374-10ed58453028.png"
-                      alt="Portrait of Jean-Michel Basquiat" 
-                      className="w-16 h-16 object-cover rounded-full"
-                    />
-                    <div>
-                      <p className="text-sm text-artGray-500">Featured Artist</p>
-                      <h3 className="text-xl font-bold">Jean-Michel Basquiat</h3>
-                    </div>
-                  </div>
-                  <div className="relative rounded-lg overflow-hidden">
+                <div className="glass-card p-4 overflow-hidden">
+                  <div className="rounded-lg overflow-hidden">
                     <img 
                       src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3" 
-                      alt="Basquiat artwork example" 
-                      className="w-full h-64 object-cover"
+                      alt="Person in art gallery scanning artwork with a mobile phone" 
+                      className="w-full h-auto object-cover rounded-lg"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <button 
-                        className="bg-white/90 hover:bg-white rounded-full p-4 shadow-lg transition-all duration-300 hover:scale-105"
-                        aria-label="Play audio guide"
-                      >
-                        <Play className="h-8 w-8 text-artPurple-500" fill="currentColor" />
-                      </button>
-                    </div>
                   </div>
-                  <div className="h-1 bg-artGray-200 rounded-full">
-                    <div className="h-full w-1/3 bg-artPurple-500 rounded-full"></div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Headphones className="h-5 w-5 text-artPurple-500" />
-                      <span className="text-sm text-artGray-600">Audio Guide</span>
+                  <div className="mt-4 flex items-center p-2">
+                    <div className="bg-artPurple-100 dark:bg-artPurple-900/40 rounded-full p-2 mr-4">
+                      <Headphones className="h-6 w-6 text-artPurple-500" aria-hidden="true" />
                     </div>
-                    <span className="text-sm text-artGray-500">2:45 / 8:30</span>
+                    <div>
+                      <h3 className="font-medium">The Starry Night</h3>
+                      <p className="text-sm text-artGray-500">Vincent van Gogh, 1889</p>
+                    </div>
+                    <div className="ml-auto">
+                      <div className="bg-artPurple-500 rounded-full p-2" role="button" aria-label="Play audio guide for The Starry Night">
+                        <Play className="h-4 w-4 text-white" fill="white" aria-hidden="true" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
