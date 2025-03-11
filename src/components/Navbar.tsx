@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import BetaSignupForm from '@/components/BetaSignupForm';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,9 +46,7 @@ const Navbar = () => {
             <a href="#demo" className="text-artGray-700 dark:text-artGray-300 hover:text-artPurple-500 dark:hover:text-artPurple-400 transition-colors">
               Demo
             </a>
-            <Button className="art-button" aria-label="Join Artio beta program">
-              Join Beta
-            </Button>
+            <BetaSignupForm />
           </nav>
 
           {/* Mobile Menu Button */}
@@ -85,9 +84,9 @@ const Navbar = () => {
             >
               Demo
             </a>
-            <Button className="art-button w-full" aria-label="Join Artio beta program">
-              Join Beta
-            </Button>
+            <div className="w-full">
+              <BetaSignupForm />
+            </div>
           </nav>
         )}
       </div>
