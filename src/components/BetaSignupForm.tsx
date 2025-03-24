@@ -46,13 +46,20 @@ export const BetaSignupForm = () => {
     
     try {
       console.log("Submitting to Supabase:", { name, email, acceptedTerms });
-      const { error, data } = await supabase
+      
+      // Fixed Supabase table name and data format to match the database schema
+      const { error } = await supabase
         .from('Beta sign up')
-        .insert([{ name, email, accepted_terms: acceptedTerms }]);
+        .insert([{ 
+          name: name || null, 
+          email,
+          accepted_terms: acceptedTerms 
+        }]);
         
-      console.log("Supabase response:", { error, data });
-        
-      if (error) throw error;
+      if (error) {
+        console.error("Supabase error:", error);
+        throw error;
+      }
       
       setFormState('success');
       toast({
