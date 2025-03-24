@@ -47,15 +47,24 @@ export const BetaSignupForm = () => {
     try {
       console.log("Submitting to Supabase:", { name, email, acceptedTerms });
       
-      // Fixed Supabase table name and data format to match the database schema
+      // Debug the database schema first
+      const { data: tableInfo, error: tableError } = await supabase
+        .from('Beta sign up')
+        .select('*')
+        .limit(1);
+      
+      console.log("Table info:", tableInfo, "Table error:", tableError);
+      
       const { error } = await supabase
         .from('Beta sign up')
         .insert([{ 
-          name: name || null, 
-          email,
-          accepted_terms: acceptedTerms 
+          name: name, 
+          email: email,
+          // Check if accepted_terms is a column in the database schema
+          ...(tableInfo && tableInfo.length > 0 && 'accepted_terms' in tableInfo[0] ? 
+            { accepted_terms: acceptedTerms } : {})
         }]);
-        
+      
       if (error) {
         console.error("Supabase error:", error);
         throw error;
