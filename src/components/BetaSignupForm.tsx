@@ -103,16 +103,16 @@ export const BetaSignupForm = () => {
       <Button 
         className="relative bg-artPurple-500 hover:bg-artPurple-600 text-white font-semibold px-6 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]" 
         onClick={() => setIsOpen(true)}
-        aria-label="Sign up for Artio beta access"
+        aria-label="Sign up for early access"
       >
         <DownloadIcon className="mr-2 h-5 w-5" aria-hidden="true" />
-        Sign Up for Beta
+        Sign up for early access
       </Button>
       
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-2xl">Join Artio Beta</DialogTitle>
+            <DialogTitle className="text-2xl">Join Artio Early Access</DialogTitle>
             <DialogDescription>
               Be among the first to try Artio and transform your art experience.
             </DialogDescription>
@@ -194,7 +194,7 @@ export const BetaSignupForm = () => {
                   className="w-full bg-artPurple-500 hover:bg-artPurple-600 rounded-md"
                   disabled={isSubmitting || !acceptedTerms}
                 >
-                  {isSubmitting ? "Signing Up..." : "Sign Up for Beta Access"}
+                  {isSubmitting ? "Signing Up..." : "Sign up for early access"}
                 </Button>
               </div>
             </form>
