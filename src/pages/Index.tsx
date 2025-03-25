@@ -30,7 +30,7 @@ const Index = () => {
                 Ready to Transform Your Art Experience?
               </h2>
               <p className="text-xl mb-8 text-white/90">
-                Be among the first to try Artio and start exploring the hidden stories behind every artwork.
+                Be among the first to try Artio and help shape its future.
               </p>
               <div className="flex justify-center">
                 <BetaSignupForm />
