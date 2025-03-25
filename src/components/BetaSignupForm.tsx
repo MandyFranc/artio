@@ -103,18 +103,18 @@ export const BetaSignupForm = () => {
       <Button 
         className="relative bg-artPurple-500 hover:bg-artPurple-600 text-white font-semibold px-6 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]" 
         onClick={() => setIsOpen(true)}
-        aria-label="Join tester waitlist"
+        aria-label="Sign up to be a tester"
       >
         <BellRing className="mr-2 h-5 w-5" aria-hidden="true" />
-        Join tester waitlist
+        Sign up to be a tester
       </Button>
       
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-2xl">Join Artio Early Access</DialogTitle>
+            <DialogTitle className="text-2xl">Become an Artio Tester</DialogTitle>
             <DialogDescription>
-              Be among the first to try Artio and transform your art experience.
+              Join our exclusive tester community and help shape the future of art exploration.
             </DialogDescription>
           </DialogHeader>
           
@@ -124,7 +124,7 @@ export const BetaSignupForm = () => {
               <div>
                 <h3 className="text-lg font-medium">Thank you for signing up!</h3>
                 <p className="text-sm text-muted-foreground mt-1">
-                  We'll notify you when Artio beta is ready for you.
+                  We'll notify you when you can start testing Artio.
                 </p>
               </div>
             </div>
@@ -194,7 +194,7 @@ export const BetaSignupForm = () => {
                   className="w-full bg-artPurple-500 hover:bg-artPurple-600 rounded-md"
                   disabled={isSubmitting || !acceptedTerms}
                 >
-                  {isSubmitting ? "Signing Up..." : "Sign up for early access"}
+                  {isSubmitting ? "Signing Up..." : "Sign up to be a tester"}
                 </Button>
               </div>
             </form>
