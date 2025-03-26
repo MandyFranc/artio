@@ -41,48 +41,29 @@ export const BetaSignupForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Prepare the data to insert
-      const insertData = { 
-        name: name || null, // Ensure null is sent if name is empty
-        email: email
-      };
+      console.log("Attempting to submit to Supabase...");
+      console.log("Email:", email);
       
-      // Check if the email already exists to prevent duplicate entries
-      const { data: existingData, error: checkError } = await supabase
+      // Insert new record with minimal data
+      const { error } = await supabase
         .from('Beta sign up')
-        .select('email')
-        .eq('email', email)
-        .maybeSingle();
-        
-      if (checkError) {
-        console.error("Error checking existing email:", checkError);
-        throw checkError;
+        .insert([{ 
+          name: name || null, // Ensure null is sent if name is empty 
+          email: email 
+        }]);
+      
+      if (error) {
+        console.error("Supabase insert error:", error);
+        throw error;
       }
       
-      if (existingData) {
-        // Email already registered, but we'll show success to prevent email enumeration
-        setFormState('success');
-        toast({
-          title: "Sign-up received!",
-          description: "Thank you for your interest in Artio beta access.",
-        });
-      } else {
-        // Insert new record
-        const { error } = await supabase
-          .from('Beta sign up')
-          .insert([insertData]);
-        
-        if (error) {
-          console.error("Supabase insert error:", error);
-          throw error;
-        }
-        
-        setFormState('success');
-        toast({
-          title: "Sign-up successful!",
-          description: "Thank you for signing up for Artio beta access. We'll be in touch soon!",
-        });
-      }
+      console.log("Form submitted successfully");
+      
+      setFormState('success');
+      toast({
+        title: "Sign-up successful!",
+        description: "Thank you for signing up for Artio beta access. We'll be in touch soon!",
+      });
       
       // Reset form after success (with delay for user to see success state)
       setTimeout(() => {
