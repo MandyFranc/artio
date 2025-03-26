@@ -24,6 +24,7 @@ export const BetaSignupForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Validate required fields
     if (!email) {
       toast({
         title: "Email required",
@@ -45,36 +46,43 @@ export const BetaSignupForm = () => {
     setIsSubmitting(true);
     
     try {
-      console.log("Submitting to Supabase:", { name, email, acceptedTerms });
+      // Prepare data - trim inputs and convert email to lowercase
+      const cleanedName = name ? name.trim() : '';
+      const cleanedEmail = email.trim().toLowerCase();
       
-      // Debug the database schema first
-      const { data: tableInfo, error: tableError } = await supabase
-        .from('Beta sign up')
-        .select('*')
-        .limit(1);
+      console.log("Submitting to Supabase:", { name: cleanedName, email: cleanedEmail });
       
-      console.log("Table info:", tableInfo, "Table error:", tableError);
-      
+      // Insert the data into Supabase
       const { error } = await supabase
         .from('Beta sign up')
         .insert([{ 
-          name: name, 
-          email: email,
-          // Check if accepted_terms is a column in the database schema
-          ...(tableInfo && tableInfo.length > 0 && 'accepted_terms' in tableInfo[0] ? 
-            { accepted_terms: acceptedTerms } : {})
+          name: cleanedName, 
+          email: cleanedEmail
         }]);
       
       if (error) {
         console.error("Supabase error:", error);
-        throw error;
+        
+        // Check if it's a duplicate email error
+        if (error.code === '23505' || error.message?.includes('duplicate')) {
+          toast({
+            title: "Already signed up",
+            description: "This email is already registered for beta access.",
+            variant: "default"
+          });
+          
+          // Still consider this a success
+          setFormState('success');
+        } else {
+          throw error;
+        }
+      } else {
+        setFormState('success');
+        toast({
+          title: "Sign-up successful!",
+          description: "Thank you for signing up for Artio beta access. We'll be in touch soon!",
+        });
       }
-      
-      setFormState('success');
-      toast({
-        title: "Sign-up successful!",
-        description: "Thank you for signing up for Artio beta access. We'll be in touch soon!",
-      });
       
       // Reset form after a delay
       setTimeout(() => {
@@ -90,7 +98,7 @@ export const BetaSignupForm = () => {
       setFormState('error');
       toast({
         title: "Sign-up failed",
-        description: "There was an error signing up. Please try again.",
+        description: "There was an error signing up. Please try again later.",
         variant: "destructive"
       });
     } finally {
