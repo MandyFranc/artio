@@ -39,10 +39,11 @@ export const BetaSignupForm = () => {
     }
     
     setIsSubmitting(true);
+    setFormState('idle');
     
     try {
       // Clean input data
-      const cleanEmail = email.trim();
+      const cleanEmail = email.trim().toLowerCase();
       const cleanName = name.trim() || null; // Convert empty string to null
       
       console.log("Submitting to Supabase with data:", { 
@@ -50,29 +51,36 @@ export const BetaSignupForm = () => {
         email: cleanEmail 
       });
       
-      // Using upsert instead of insert to handle potential duplicates more gracefully
+      // Explicitly define the data structure to match the table schema
       const { error } = await supabase
         .from('Beta sign up')
-        .upsert({ 
+        .insert({ 
           name: cleanName,
           email: cleanEmail
-        }, { 
-          onConflict: 'email',
-          ignoreDuplicates: true
         });
       
       if (error) {
         console.error("Supabase error details:", error);
-        throw error;
+        
+        // Handle potential duplicate email error specifically
+        if (error.code === '23505') {
+          toast({
+            title: "Already signed up",
+            description: "This email is already registered for beta access.",
+          });
+          // Still consider this a success from the user perspective
+          setFormState('success');
+        } else {
+          throw error;
+        }
+      } else {
+        console.log("Form submission successful");
+        setFormState('success');
+        toast({
+          title: "Sign-up successful!",
+          description: "Thank you for signing up for Artio beta access. We'll be in touch soon!",
+        });
       }
-      
-      console.log("Form submission successful");
-      
-      setFormState('success');
-      toast({
-        title: "Sign-up successful!",
-        description: "Thank you for signing up for Artio beta access. We'll be in touch soon!",
-      });
       
       // Reset form after success (with delay for user to see success state)
       setTimeout(() => {
@@ -85,21 +93,13 @@ export const BetaSignupForm = () => {
       
     } catch (error: any) {
       console.error('Error during form submission:', error);
+      setFormState('error');
       
-      // Check for duplicate key violation (already handled by upsert now)
-      if (error.code === '23505') {
-        toast({
-          title: "Already signed up",
-          description: "This email is already registered for beta access.",
-        });
-      } else {
-        setFormState('error');
-        toast({
-          title: "Sign-up failed",
-          description: error.message || "There was an error signing up. Please try again.",
-          variant: "destructive"
-        });
-      }
+      toast({
+        title: "Sign-up failed",
+        description: error.message || "There was an error signing up. Please try again.",
+        variant: "destructive"
+      });
     } finally {
       setIsSubmitting(false);
     }
