@@ -41,35 +41,50 @@ export const BetaSignupForm = () => {
     setIsSubmitting(true);
     
     try {
-      console.log("Submitting to Supabase:", { name, email, acceptedTerms });
+      // Prepare the data to insert
+      const insertData = { 
+        name: name || null, // Ensure null is sent if name is empty
+        email: email
+      };
       
-      const { data: tableInfo, error: tableError } = await supabase
+      // Check if the email already exists to prevent duplicate entries
+      const { data: existingData, error: checkError } = await supabase
         .from('Beta sign up')
-        .select('*')
-        .limit(1);
-      
-      console.log("Table info:", tableInfo, "Table error:", tableError);
-      
-      const { error } = await supabase
-        .from('Beta sign up')
-        .insert([{ 
-          name: name, 
-          email: email,
-          ...(tableInfo && tableInfo.length > 0 && 'accepted_terms' in tableInfo[0] ? 
-            { accepted_terms: acceptedTerms } : {})
-        }]);
-      
-      if (error) {
-        console.error("Supabase error:", error);
-        throw error;
+        .select('email')
+        .eq('email', email)
+        .maybeSingle();
+        
+      if (checkError) {
+        console.error("Error checking existing email:", checkError);
+        throw checkError;
       }
       
-      setFormState('success');
-      toast({
-        title: "Sign-up successful!",
-        description: "Thank you for signing up for Artio beta access. We'll be in touch soon!",
-      });
+      if (existingData) {
+        // Email already registered, but we'll show success to prevent email enumeration
+        setFormState('success');
+        toast({
+          title: "Sign-up received!",
+          description: "Thank you for your interest in Artio beta access.",
+        });
+      } else {
+        // Insert new record
+        const { error } = await supabase
+          .from('Beta sign up')
+          .insert([insertData]);
+        
+        if (error) {
+          console.error("Supabase insert error:", error);
+          throw error;
+        }
+        
+        setFormState('success');
+        toast({
+          title: "Sign-up successful!",
+          description: "Thank you for signing up for Artio beta access. We'll be in touch soon!",
+        });
+      }
       
+      // Reset form after success (with delay for user to see success state)
       setTimeout(() => {
         setName('');
         setEmail('');
@@ -122,4 +137,3 @@ export const BetaSignupForm = () => {
 };
 
 export default BetaSignupForm;
-
