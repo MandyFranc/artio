@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import PolicyModal from './PolicyModal';
 import { TermsOfServiceContent } from './PolicyContents';
@@ -41,23 +41,31 @@ export const BetaSignupForm = () => {
     setIsSubmitting(true);
     
     try {
-      console.log("Attempting to submit to Supabase...");
-      console.log("Email:", email);
+      console.log("Preparing to submit form data to Supabase...");
       
-      // Insert new record with minimal data
-      const { error } = await supabase
+      // Create a clean data object for insertion
+      const nameValue = name.trim() === '' ? null : name.trim();
+      
+      console.log("Data to insert:", { 
+        name: nameValue, 
+        email: email.trim() 
+      });
+      
+      // Insert the record with explicit typing to match database schema
+      const { data, error } = await supabase
         .from('Beta sign up')
         .insert([{ 
-          name: name || null, // Ensure null is sent if name is empty 
-          email: email 
-        }]);
+          name: nameValue,
+          email: email.trim()
+        }])
+        .select();
       
       if (error) {
-        console.error("Supabase insert error:", error);
+        console.error("Supabase insertion error:", error);
         throw error;
       }
       
-      console.log("Form submitted successfully");
+      console.log("Form submission successful, response:", data);
       
       setFormState('success');
       toast({
@@ -74,14 +82,24 @@ export const BetaSignupForm = () => {
         setIsOpen(false);
       }, 3000);
       
-    } catch (error) {
-      console.error('Error signing up:', error);
-      setFormState('error');
-      toast({
-        title: "Sign-up failed",
-        description: "There was an error signing up. Please try again.",
-        variant: "destructive"
-      });
+    } catch (error: any) {
+      console.error('Error details:', error);
+      
+      // Check for duplicate key violation
+      if (error.code === '23505') {
+        toast({
+          title: "Already signed up",
+          description: "This email is already registered for beta access.",
+          variant: "destructive"
+        });
+      } else {
+        setFormState('error');
+        toast({
+          title: "Sign-up failed",
+          description: "There was an error signing up. Please try again.",
+          variant: "destructive"
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }
